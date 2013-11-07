@@ -78,11 +78,9 @@ class CommentsController < FeedbackController
   end
 
   def set_cookies_for comment
-    add_to_cookies(:author, comment.author)
-    add_to_cookies(:url, comment.url)
-    if ! comment.email.blank?
-      add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(comment.email.strip))
-    end
+    add_to_cookies(:author, comment.author, '/')
+    add_to_cookies(:url, comment.url, '/')
+    add_to_cookies(:email, comment.email.strip, '/')
   end
 
   def get_article
